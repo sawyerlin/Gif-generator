@@ -1,0 +1,21 @@
+{
+  "name": "Gif-generator",
+  "version": "1.0.0",
+  "description": "gif generator server side",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sawyerlin/Gif-generator.git"
+  },
+  "author": "sawyerlin",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/sawyerlin/Gif-generator/issues"
+  },
+  "devDependencies": {
+    "express": "~4.13.4"
+  }
+}
