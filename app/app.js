@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var crypto = require('crypto');
+var exec = require('exec');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -34,7 +35,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.post('/upload', multer({
     storage: multer.diskStorage({
-        destination: './public/uploads/',
+        destination: './public/upload/',
         filename: function(req, file, cb) {
             crypto.pseudoRandomBytes(16, function(err, raw) {
                 if (err) { 
@@ -47,6 +48,13 @@ app.post('/upload', multer({
 })
 .single('upload_file'), function(req, res, next) {
     res.send('upload file');
+});
+app.post('/convert', function(req, res, next) {
+    var baseDir = __dirname + '/public/upload/',
+        gifFile = 'out.gif';
+    exec(baseDir + 'gifenc.sh ' + baseDir + ' ' + req.body.name + ' ' + gifFile, function(error, stdout, stderr) {
+        res.send(gifFile);
+    });
 });
 
 // catch 404 and forward to error handler
