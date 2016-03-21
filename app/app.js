@@ -51,8 +51,9 @@ app.post('/upload', multer({
 });
 app.post('/convert', function(req, res, next) {
     var baseDir = __dirname + '/public/upload/',
-        gifFile = 'out.gif';
-    exec(baseDir + 'gifenc.sh ' + baseDir + ' ' + req.body.name + ' ' + gifFile, function(error, stdout, stderr) {
+        scriptDir = __dirname + '/scripts/',
+        gifFile = req.body.name.split('.')[0] + '.gif';
+    exec(scriptDir + 'gifenc.sh ' + baseDir + ' ' + req.body.name + ' ' + gifFile, function(error, stdout, stderr) {
         res.send(gifFile);
     });
 });
